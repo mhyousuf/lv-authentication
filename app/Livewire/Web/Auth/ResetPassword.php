@@ -8,59 +8,54 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetPassword extends Component
 {
-    public $id;
+    public $userId;
+    public $token;
     public $email;
+    public $password;
     public $new_password;
-    public $confirm_password;
 
     public function render()
     {
-        // $email = ($this->email);
         return view('livewire.web.auth.reset-password');
     }
 
     public function mount()
     {
-        // $user = AuthLogin::where('email', $email)->first();
-        $user = AuthLogin::find($this->id);
-        // $id = $this->id;
-        dd($user);
-        // $this->id = $user ? $user->id : null;
+        //
     }
 
     public function passwordUpdate()
     {
-        // $this->validation();
+        $this->validation();
         // dd($this->id);
 
-        $id = $this->id;
-        $email = $this->email;
         $new_password = bcrypt($this->new_password);
 
-        $user = AuthLogin::find($id);
-        dd($user);
+        $user = AuthLogin::find($this->userId);
+        // dd($user);
         if($user)
         {
             // $user->update(['password' => Hash::make($new_password)]);
-            AuthLogin::whereId($id)->update(['password' => $new_password]);
+            AuthLogin::whereId($this->userId)->update(['password' => $new_password]);
             // dd($up);
-            return '1';
+            return redirect()->route('web.login.index');
         }else{
-            return '0';
+            return back();
         }
     }
 
     public function validation()
     {
         return $this->validate([
-            'email' => [
-                'email',
-            ],
-            'new_password' => [
+            // 'new_password' => [
+            //     'required',
+            // ],
+            // 'confirm_password' => [
+            //     'required',
+            // ],
+            'password' => [
                 'required',
-            ],
-            'confirm_password' => [
-                'required',
+                'confirmed',
             ],
 
         ]);

@@ -5,6 +5,7 @@
         'confirm_password',
         'submit',
     ];
+
 @endphp
 <div wire:loading.class="disabled" wire:target="{{ implode(',', $wireTargets) }}">
     <x-ui.row class="justify-content-center">

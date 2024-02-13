@@ -1,3 +1,3 @@
 <x-layouts.app :title="__('Reset Password')">
-    <livewire:web.auth.reset-password :email="$email ?? null"/>
+    <livewire:web.auth.reset-password :userId="$token ?? null"/>
 </x-layouts.app>

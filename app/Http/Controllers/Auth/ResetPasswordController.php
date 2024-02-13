@@ -8,12 +8,8 @@ use App\Models\AuthLogin;
 
 class ResetPasswordController extends Controller
 {
-    public function resetpassword(){
-
-        // $user = AuthLogin::find(['1, 2']);
-        // $user = AuthLogin::where('email', $email)->first();
-
-        return view('auth.reset-password');
-
+    public function resetpassword($token)
+    {
+        return view('auth.reset-password', ['token' => $token]);
     }
 }

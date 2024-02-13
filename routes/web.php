@@ -22,7 +22,7 @@ use App\Http\Controllers\Controller;
 Route::get('admin', [Auth\AuthController::class, 'index'])->name('web.login.index');
 Route::post('login', [Auth\AuthController::class, 'login'])->name('web.login');
 Route::get('forgot-password', [Auth\ForgotPasswordController::class, 'index'])->name('forgot.pass');
-Route::get('reset-password', [Auth\ResetPasswordController::class, 'resetpassword'])->name('reset.password');
+Route::get('reset-password/{token}', [Auth\ResetPasswordController::class, 'resetpassword'])->name('reset.password');
 Route::post('logout', [Auth\LogoutController::class, 'logout'])->name('web.logout');
 
 Route::group(['prefix' => 'web', 'middleware' => 'authmw'], function () {

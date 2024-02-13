@@ -39,7 +39,7 @@ class ResetPasswordNotification extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Reset Password', route('reset.password'))
+                    ->action('Reset Password', route('reset.password', $notifiable->id))
                     ->line('Thank you for using our application!');
     }
 
